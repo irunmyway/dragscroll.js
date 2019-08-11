@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <meta name="renderer" content="webkit">
+    <title>拖拽滚动</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="">
+    <style type="text/css">
+        *{ margin: 0; padding: 0 }
+        .drag-box{
+            width: 400px;
+            height: 200px;
+            margin: 20px auto;
+            overflow: hidden;
+            border: 1px solid #e8e8e8;
+            background: #f8f8f8;
+            line-height: 25px;
+            font-size: 14px;
+        }
+        .drag{
+            width: 150%;
+            padding: 10px;
+            cursor: grab;
+            -moz-user-select:none;
+            -webkit-user-select:none;
+            -ms-user-select:none;
+            -khtml-user-select:none;
+            user-select:none;
+        }
+        .drag-x{
+            width: 150%;
+            padding: 10px;
+            cursor: grab;
+            -moz-user-select:none;
+            -webkit-user-select:none;
+            -ms-user-select:none;
+            -khtml-user-select:none;
+            user-select:none;
+        }
+        .drag-y{
+            padding: 10px;
+            cursor: grab;
+            -moz-user-select:none;
+            -webkit-user-select:none;
+            -ms-user-select:none;
+            -khtml-user-select:none;
+            user-select:none;
+        }
+    </style>
+</head>
+<body>
+    <div class="drag-box">
+        <div class="drag">收到回复很舒服的还是哈萨克峰会上师傅师傅伙食费很多公开发货开个会水电费委员会复合大师多个个黄金时代符号为一人一份的活动回顾圣诞节方式还是符合很舒服很舒服舒服很舒服好好说废话师傅横槊赋诗大家都放假手机健身房收到回复很舒服的还是哈萨克峰会上师傅师傅伙食费很多公开发货开个会水电费委员会复合大师多个个黄金时代符号为一人一份的活动回顾圣诞节方式还是符合很舒服很舒服舒服很舒服好好说废话师傅横槊赋诗大家都放假手机健身房收到回复很舒服的还是哈萨克峰会上师傅师傅伙食费很多公开发货开个会水电费委员会复合大收到回复很舒服的还是哈萨克峰会上师傅师傅伙食费很多公开发货开个会水电费委员会复合大师多个个黄金时代符号为一人一份的活动回顾圣诞节方式还是符合很舒服很舒服舒服很舒服好好说废话师傅横槊赋诗大家都放假手机健身房收到回复很舒服的还是哈萨克峰会上师傅师傅伙食费很多公开发货开个会水电费委员会复合大师多个个黄金时代符号为一人一份的活动回顾圣诞节方式还是符合很舒服很舒服舒服很舒服好好说废话师傅横槊赋诗大家都放假手机健身房收到回复很舒服的还是哈萨克峰会上师傅师傅伙食费很多公开发货开个会水电费委员会复合大</div>
+    </div>
+
+    <div class="drag-box">
+        <div class="drag-x">收到回复很舒服的还是哈萨克峰会上师傅师傅伙食费很多公开发货开个会水电费委员会复合大师多个个黄金时代符号为一人一份的活动回顾圣诞节方式还是符合很舒服很舒服舒服很舒服好好说废话师傅横槊赋诗大家都放假手机健身房收到回复很舒服的还是哈萨克峰会上师傅师傅伙食费很多公开发货开个会水电费委员会复合大师多个个黄金时代符号为一人一份的活动回顾圣诞节方式还是符合很舒服很舒服舒服很舒服好好说废话师傅横槊赋诗大家都放假手机健身房收到回复很舒服的还是哈萨克峰会上师傅师傅伙食费很多公开发货开个会水电费委员会复合大</div>
+    </div>
+
+    <div class="drag-box">
+        <div class="drag-y">收到回复很舒服的还是哈萨克峰会上师傅师傅伙食费很多公开发货开个会水电费委员会复合大师多个个黄金时代符号为一人一份的活动回顾圣诞节方式还是符合很舒服很舒服舒服收到回复很舒服的还是哈萨克峰会上师傅师傅伙食费很多公开发货开个会水电费委员会复合大师多个个黄金时代符号为一人一份的活动回顾圣诞节方式还是符合很舒服很舒服舒服很舒服好好说废话师傅横槊赋诗大家都放假手机健身房收到回复很舒服的还是哈萨克峰会上师傅师傅伙食费很多公开发货开个会水电费委员会复合大师多个个黄金时代符号为一人一份的活动回顾圣诞节方式还是符合很舒服很舒服舒服很舒服好好说废话师傅横槊赋诗大家都放假手机健身房收到回复很舒服的还是哈萨克峰会上师傅师傅伙食费很多公开发货开个会水电费委员会复合大</div>
+    </div>
+    
+    <script src="lib/jquery-1.12.4.min.js"></script>
+    <script src="js/jquery.dragscroll.js"></script>
+    <script type="text/javascript">
+        $('.drag').dragscroll();
+        // $('.drag').dragscroll('destroy');
+
+        // 水平方向
+        $('.drag-x').dragscroll({
+            direction: 'scrollLeft'
+        });
+
+        // 垂直方向
+        $('.drag-y').dragscroll({
+            direction: 'scrollTop'
+        });
+    </script>
+</body>
+</html>
