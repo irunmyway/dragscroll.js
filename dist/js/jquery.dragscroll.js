@@ -27,6 +27,7 @@
                 var left0, top0, x0, y0, flag = true;
                 // 鼠标点击
                 $this.on('mousedown', function(e) {
+                    e.preventDefault();
                     var e = e || window.event;
                     flag = true;
                     x0 = e.clientX;
@@ -37,6 +38,7 @@
 
                 // 鼠标移动
                 $this.on('mousemove', function(e) {
+                    e.preventDefault();
                     var e = e || window.event;
                     if (flag) {
                         setTimeout(function() {
