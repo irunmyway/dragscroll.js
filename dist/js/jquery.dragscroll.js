@@ -15,7 +15,10 @@
     var methods = {
         init: function(options) {
             var defaults = {
-                direction: null
+                direction: null,
+                onStart: function($this) {},
+                onMove: function($this) {},
+                onEnd: function($this) {}
             };
 
             var opt = $.extend({}, defaults, options);
@@ -23,8 +26,11 @@
             return this.each(function() {
                 var $this = $(this);
                 var _dir = opt.direction;
+                var _onStart = opt.onStart;
+                var _onMove = opt.onMove;
+                var _onEnd = opt.onEnd;
 
-                var left0, top0, x0, y0, flag = true;
+                var left0, top0, x0, y0, flag = false;
                 // 鼠标点击
                 $this.on('mousedown', function(e) {
                     e.preventDefault();
@@ -34,6 +40,7 @@
                     y0 = e.clientY;
                     left0 = $(this).parent().scrollLeft();
                     top0 = $(this).parent().scrollTop();
+                    _onStart && _onStart.call(this, $this);
                 });
 
                 // 鼠标移动
@@ -53,11 +60,15 @@
                                 $this.parent().scrollTop(top0 - moveY);
                             }
                         }, 10);
+                        _onMove && _onMove.call(this, $this);
                     }
                 });
 
                 // 鼠标松开或离开
                 $this.on('mouseup mouseleave', function() {
+                    if (flag) {
+                        _onEnd && _onEnd.call(this, $this);
+                    }
                     flag = false;
                 });
 
@@ -69,8 +80,10 @@
                     y0 = e.clientY;
                     left0 = $(this).parent().scrollLeft();
                     top0 = $(this).parent().scrollTop();
+                    _onStart && _onStart.call(this, $this);
                 });
                 $this.on('touchmove', function(e) {
+                    e.stopPropagation();
                     var e = e.originalEvent.targetTouches[0];
                     if (flag) {
                         setTimeout(function() {
@@ -85,9 +98,13 @@
                                 $this.parent().scrollTop(top0 - moveY);
                             }
                         }, 10);
+                        _onMove && _onMove.call(this, $this);
                     }
                 });
                 $this.on('touchend', function(e) {
+                    if (flag) {
+                        _onEnd && _onEnd.call(this, $this);
+                    }
                     flag = false;
                 });
             });
