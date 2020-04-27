@@ -16,9 +16,9 @@
         init: function(options) {
             var defaults = {
                 direction: null,
-                onStart: function($this) {},
-                onMove: function($this) {},
-                onEnd: function($this) {}
+                onStart: function() {},
+                onMove: function() {},
+                onEnd: function() {}
             };
 
             var opt = $.extend({}, defaults, options);
