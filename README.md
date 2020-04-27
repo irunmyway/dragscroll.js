@@ -23,7 +23,7 @@ css自定义，可以自己根据需要设置drag-box的宽高，超出隐藏等
 ### 参数说明：
 ```
 direction：null，  // 滚动方向：默认null，可选"scrollLeft","scrollTop"
-onStart: function($this) {}, // 拖动开始前的回调函数
-onMove: function($this) {},  // 拖动时的回调函数
-onEnd: function($this) {}    // 拖动结束后的回调函数
+onStart: function() {}, // 拖动开始前的回调函数
+onMove: function() {},  // 拖动时的回调函数
+onEnd: function() {}    // 拖动结束后的回调函数
 ```
