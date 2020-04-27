@@ -49,8 +49,8 @@
                     var e = e || window.event;
                     if (flag) {
                         setTimeout(function() {
-                            var moveX = e.clientX - x0;
-                            var moveY = e.clientY - y0;
+                            var moveX = parseInt(e.clientX - x0);
+                            var moveY = parseInt(e.clientY - y0);
                             if (_dir == 'scrollLeft') {
                                 $this.parent().scrollLeft(left0 - moveX);
                             } else if (_dir == 'scrollTop') {
@@ -59,7 +59,7 @@
                                 $this.parent().scrollLeft(left0 - moveX);
                                 $this.parent().scrollTop(top0 - moveY);
                             }
-                        }, 10);
+                        }, 30);
                         _onMove && _onMove.call(this, $this);
                     }
                 });
@@ -87,8 +87,8 @@
                     var e = e.originalEvent.targetTouches[0];
                     if (flag) {
                         setTimeout(function() {
-                            var moveX = e.clientX - x0;
-                            var moveY = e.clientY - y0;
+                            var moveX = parseInt(e.clientX - x0);
+                            var moveY = parseInt(e.clientY - y0);
                             if (_dir == 'scrollLeft') {
                                 $this.parent().scrollLeft(left0 - moveX);
                             } else if (_dir == 'scrollTop') {
@@ -97,7 +97,7 @@
                                 $this.parent().scrollLeft(left0 - moveX);
                                 $this.parent().scrollTop(top0 - moveY);
                             }
-                        }, 10);
+                        }, 30);
                         _onMove && _onMove.call(this, $this);
                     }
                 });
