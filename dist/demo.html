@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="format-detection" content="telephone=no, email=no, address=no">
+    <title>拖拽滚动</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="">
+    <style type="text/css">
+        *{ margin: 0; padding: 0 }
+        .drag-box{
+            box-sizing: border-box;
+            width: 100%;
+            height: 200px;
+            max-width: 375px;
+            margin: 20px auto;
+            overflow: hidden;
+            border: 1px solid #e8e8e8;
+            background: #f8f8f8;
+            line-height: 25px;
+            font-size: 14px;
+        }
+        .drag{
+            width: 150%;
+            padding: 10px 15px;
+            cursor: grab;
+        }
+        .drag-x{
+            width: 150%;
+            padding: 10px;
+            cursor: grab;
+        }
+        .drag-y{
+            padding: 10px;
+            cursor: grab;
+        }
+    </style>
+</head>
+<body>
+    <div class="drag-box">
+        <div class="drag">一只小鸟在林间的小路上找到了一粒葵花籽，但是这时它已经吃饱了，于是它就想把葵花籽上叼回巢里慢慢享用。它飞过小河，飞过村庄，再飞过一幢瓦房就到家了。到家的喜悦让这只小鸟有些得意忘形，它站在瓦房顶上忍不住大叫一声。这下可好，葵花籽正好掉在了北窗旁的砖缝里。这只小鸟怎么也找不到那粒葵花籽，只好悻悻地飞走了。掉进砖缝里的葵花籽想伸展一下自己的身体，可向东是壁，向南是壁，向北是壁，向西还是壁。唉！四处都是壁，这可如何是好？葵花籽叹了口气。好在它没有放弃自己的愿望，休息了一会儿，使出浑身解数向上顶去。从此这粒葵花籽就为自己选准了一个正确的方向——努力向上生长。没有土，它努力抓住空气中的每一粒尘埃；没有水，它随时汲取上天降临的每一滴甘露；借着从南窗透过来的微弱阳光，它膨胀、挣扎，再膨胀、再挣扎，终于，它长出了绿芽，在夏天快要结束的时候，它终于向天空骄傲地绽放出黄艳艳的花朵。不久的后来，它又结出了虽有些小，却颗粒饱满、醇香味美的果实。这粒种子的愿望终于实现了！</div>
+    </div>
+
+    <div class="drag-box">
+        <div class="drag-x">一只小鸟在林间的小路上找到了一粒葵花籽，但是这时它已经吃饱了，于是它就想把葵花籽上叼回巢里慢慢享用。它飞过小河，飞过村庄，再飞过一幢瓦房就到家了。到家的喜悦让这只小鸟有些得意忘形，它站在瓦房顶上忍不住大叫一声。这下可好，葵花籽正好掉在了北窗旁的砖缝里。这只小鸟怎么也找不到那粒葵花籽，只好悻悻地飞走了。</div>
+    </div>
+
+    <div class="drag-box">
+        <div class="drag-y">一只小鸟在林间的小路上找到了一粒葵花籽，但是这时它已经吃饱了，于是它就想把葵花籽上叼回巢里慢慢享用。它飞过小河，飞过村庄，再飞过一幢瓦房就到家了。到家的喜悦让这只小鸟有些得意忘形，它站在瓦房顶上忍不住大叫一声。这下可好，葵花籽正好掉在了北窗旁的砖缝里。这只小鸟怎么也找不到那粒葵花籽，只好悻悻地飞走了。掉进砖缝里的葵花籽想伸展一下自己的身体，可向东是壁，向南是壁，向北是壁，向西还是壁。唉！四处都是壁，这可如何是好？葵花籽叹了口气。好在它没有放弃自己的愿望，休息了一会儿，使出浑身解数向上顶去。从此这粒葵花籽就为自己选准了一个正确的方向——努力向上生长。没有土，它努力抓住空气中的每一粒尘埃；没有水，它随时汲取上天降临的每一滴甘露；借着从南窗透过来的微弱阳光，它膨胀、挣扎，再膨胀、再挣扎，终于，它长出了绿芽，在夏天快要结束的时候，它终于向天空骄傲地绽放出黄艳艳的花朵。不久的后来，它又结出了虽有些小，却颗粒饱满、醇香味美的果实。这粒种子的愿望终于实现了！</div>
+    </div>
+    
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="jquery.dragscroll.js"></script>
+    <script type="text/javascript">
+        $('.drag').dragscroll({
+            onStart: function() {
+                console.log($(this));
+            },
+            onMove: function() {
+                // console.log($(this));
+            },
+            onEnd: function() {
+                console.log($(this));
+            }
+        });
+        // $('.drag').dragscroll('destroy');
+
+        // 水平方向
+        $('.drag-x').dragscroll({
+            direction: 'scrollLeft'
+        });
+
+        // 垂直方向
+        $('.drag-y').dragscroll({
+            direction: 'scrollTop'
+        });
+    </script>
+</body>
+</html>
