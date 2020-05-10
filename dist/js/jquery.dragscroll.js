@@ -31,82 +31,87 @@
                 var _onEnd = opt.onEnd;
 
                 var left0, top0, x0, y0, flag = false;
-                // 鼠标点击
-                $this.on('mousedown', function(e) {
-                    e.preventDefault();
-                    var e = e || window.event;
-                    flag = true;
-                    x0 = e.clientX;
-                    y0 = e.clientY;
-                    left0 = $(this).parent().scrollLeft();
-                    top0 = $(this).parent().scrollTop();
-                    _onStart && _onStart.call(this, $this);
-                });
+                if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+                    // 移动端
+                    $this.on('touchstart', function(e) {
+                        var e = e.originalEvent.targetTouches[0];
+                        flag = true;
+                        x0 = e.clientX;
+                        y0 = e.clientY;
+                        left0 = $(this).parent().scrollLeft();
+                        top0 = $(this).parent().scrollTop();
+                        _onStart && _onStart.call(this, $this);
 
-                // 鼠标移动
-                $this.on('mousemove', function(e) {
-                    e.preventDefault();
-                    var e = e || window.event;
-                    if (flag) {
-                        setTimeout(function() {
-                            var moveX = parseInt(e.clientX - x0);
-                            var moveY = parseInt(e.clientY - y0);
-                            if (_dir == 'scrollLeft') {
-                                $this.parent().scrollLeft(left0 - moveX);
-                            } else if (_dir == 'scrollTop') {
-                                $this.parent().scrollTop(top0 - moveY);
-                            } else {
-                                $this.parent().scrollLeft(left0 - moveX);
-                                $this.parent().scrollTop(top0 - moveY);
+                        $this.on('touchmove', function(e) {
+                            e.stopPropagation();
+                            var e = e.originalEvent.targetTouches[0];
+                            if (flag) {
+                                setTimeout(function() {
+                                    var moveX = parseInt(e.clientX - x0);
+                                    var moveY = parseInt(e.clientY - y0);
+                                    if (_dir == 'scrollLeft') {
+                                        $this.parent().scrollLeft(left0 - moveX);
+                                    } else if (_dir == 'scrollTop') {
+                                        $this.parent().scrollTop(top0 - moveY);
+                                    } else {
+                                        $this.parent().scrollLeft(left0 - moveX);
+                                        $this.parent().scrollTop(top0 - moveY);
+                                    }
+                                }, 30);
+                                _onMove && _onMove.call(this, $this);
                             }
-                        }, 30);
-                        _onMove && _onMove.call(this, $this);
-                    }
-                });
-
-                // 鼠标松开或离开
-                $this.on('mouseup mouseleave', function() {
-                    if (flag) {
-                        _onEnd && _onEnd.call(this, $this);
-                    }
-                    flag = false;
-                });
-
-                // 移动端
-                $this.on('touchstart', function(e) {
-                    var e = e.originalEvent.targetTouches[0];
-                    flag = true;
-                    x0 = e.clientX;
-                    y0 = e.clientY;
-                    left0 = $(this).parent().scrollLeft();
-                    top0 = $(this).parent().scrollTop();
-                    _onStart && _onStart.call(this, $this);
-                });
-                $this.on('touchmove', function(e) {
-                    e.stopPropagation();
-                    var e = e.originalEvent.targetTouches[0];
-                    if (flag) {
-                        setTimeout(function() {
-                            var moveX = parseInt(e.clientX - x0);
-                            var moveY = parseInt(e.clientY - y0);
-                            if (_dir == 'scrollLeft') {
-                                $this.parent().scrollLeft(left0 - moveX);
-                            } else if (_dir == 'scrollTop') {
-                                $this.parent().scrollTop(top0 - moveY);
-                            } else {
-                                $this.parent().scrollLeft(left0 - moveX);
-                                $this.parent().scrollTop(top0 - moveY);
+                        });
+                        $this.on('touchend', function(e) {
+                            if (flag) {
+                                _onEnd && _onEnd.call(this, $this);
                             }
-                        }, 30);
-                        _onMove && _onMove.call(this, $this);
-                    }
-                });
-                $this.on('touchend', function(e) {
-                    if (flag) {
-                        _onEnd && _onEnd.call(this, $this);
-                    }
-                    flag = false;
-                });
+                            flag = false;
+                            $this.off('touchmove touchend');
+                        });
+                    });
+                } else {
+                    // 鼠标按下
+                    $this.on('mousedown', function(e) {
+                        e.preventDefault();
+                        var e = e || window.event;
+                        flag = true;
+                        x0 = e.clientX;
+                        y0 = e.clientY;
+                        left0 = $(this).parent().scrollLeft();
+                        top0 = $(this).parent().scrollTop();
+                        _onStart && _onStart.call(this, $this);
+
+                        // 鼠标移动
+                        $this.on('mousemove', function(e) {
+                            e.preventDefault();
+                            var e = e || window.event;
+                            if (flag) {
+                                setTimeout(function() {
+                                    var moveX = parseInt(e.clientX - x0);
+                                    var moveY = parseInt(e.clientY - y0);
+                                    if (_dir == 'scrollLeft') {
+                                        $this.parent().scrollLeft(left0 - moveX);
+                                    } else if (_dir == 'scrollTop') {
+                                        $this.parent().scrollTop(top0 - moveY);
+                                    } else {
+                                        $this.parent().scrollLeft(left0 - moveX);
+                                        $this.parent().scrollTop(top0 - moveY);
+                                    }
+                                }, 30);
+                                _onMove && _onMove.call(this, $this);
+                            }
+                        });
+
+                        // 鼠标松开或离开
+                        $this.on('mouseup mouseleave', function() {
+                            if (flag) {
+                                _onEnd && _onEnd.call(this, $this);
+                            }
+                            flag = false;
+                            $this.off('mousemove mouseup mouseleave');
+                        });
+                    });
+                }
             });
         },
         destroy: function() {
